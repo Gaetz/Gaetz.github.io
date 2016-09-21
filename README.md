@@ -1,5 +1,5 @@
 
-My blog, with angular2, nodejs and mongo
+My blog, with angular2
 
 =======
 # Angular-cli doc
