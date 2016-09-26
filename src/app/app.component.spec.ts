@@ -4,13 +4,17 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
+import { BlogCategoriesComponent } from './blog-categories/blog-categories.component';
+import { BlogService } from './services/blog.service';
 
 describe('App: Gblog', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, MenuComponent, BlogCategoriesComponent
       ],
+      providers: [ BlogService ]
     });
   });
 

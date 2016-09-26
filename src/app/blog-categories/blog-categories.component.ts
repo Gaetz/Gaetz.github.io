@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category.model';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'gb-blog-categories',
@@ -8,12 +9,13 @@ import { Category } from '../models/category.model';
 })
 export class BlogCategoriesComponent implements OnInit {
 
-  categories: Array<Category> = [{ name: 'Informatique' }, { name: 'Economie' }, { name: 'Jeux vidéos' }];
+  categories: Array<Category>;
 
-  constructor() { 
+  constructor(private blogService: BlogService) {
   }
 
   ngOnInit() {
+    this.categories = this.blogService.listCategories();
   }
 
 }

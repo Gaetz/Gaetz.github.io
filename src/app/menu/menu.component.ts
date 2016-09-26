@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogCategoriesComponent } from '../blog-categories/blog-categories.component';
 
 @Component({
   selector: 'gb-menu',
