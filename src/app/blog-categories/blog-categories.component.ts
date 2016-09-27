@@ -15,7 +15,8 @@ export class BlogCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categories = this.blogService.listCategories();
+    // Subscribe to service observable and get categories when ready
+    this.blogService.listCategories().subscribe( categories => this.categories = categories );
   }
 
 }

@@ -20,8 +20,14 @@ describe('Service: Blog', () => {
   }));
 
   it('should list categories', () => {
-    const races = service.listCategories();
-    expect(races.length).toBe(3, 'The service should return three categories for the `listCategories()` method');
+    service.listCategories().subscribe(
+      // Success
+      c => {
+        expect(c.length).toBe(3, 'The service should return three categories for the `listCategories()` method');
+      },
+      // Error
+      c => console.log("Done testing service")
+    );
   });
 
 });
