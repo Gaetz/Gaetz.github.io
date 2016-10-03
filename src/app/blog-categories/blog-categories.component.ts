@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category.model';
 import { BlogService } from '../services/blog.service';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+
 
 @Component({
   selector: 'gb-blog-categories',
@@ -9,14 +11,22 @@ import { BlogService } from '../services/blog.service';
 })
 export class BlogCategoriesComponent implements OnInit {
 
-  categories: Array<Category>;
+  categories: FirebaseListObservable<Category[]>;
 
   constructor(private blogService: BlogService) {
+    this.categories = this.blogService.listCategories();
   }
 
   ngOnInit() {
-    // Subscribe to service observable and get categories when ready
-    this.blogService.listCategories().subscribe( categories => this.categories = categories );
+
+  }
+
+  addCategory(name: string) {
+    this.blogService.addCategory(new Category(name));
+  }
+
+  removeCategory(key: string) {
+    this.blogService.removeCategory(key);
   }
 
 }

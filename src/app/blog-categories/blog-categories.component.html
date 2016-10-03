@@ -1,3 +1,6 @@
 <ul class="nav navbar-nav">
-  <li *ngFor="let category of categories"><a href="#">{{category.name}}</a></li>
+  <li *ngFor="let category of categories | async"><a href="#">{{category.name}}</a><button (click)="removeCategory(category.$key)">Remove</button></li>
 </ul>
+
+  <input type="text" #newitem />
+  <button (click)="addCategory(newitem.value)">Add</button>
