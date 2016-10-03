@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../models/category.model';
-import { BlogService } from '../services/blog.service';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Category } from '../../models/category.model';
+import { BlogService } from '../../services/blog.service';
+import { FirebaseListObservable } from 'angularfire2';
 
 
 @Component({

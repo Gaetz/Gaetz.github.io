@@ -1,8 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable } from 'angularfire2';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
 import { Category } from '../models/category.model';
@@ -10,15 +9,13 @@ import { Category } from '../models/category.model';
 @Injectable()
 export class BlogService  {
 
-  constructor(private firebase: FirebaseService) {
-    this.categories = this.firebase.getList('/categories')
-   }
-
-  // Categories
   categories: FirebaseListObservable<Category[]>;
 
-  syncCategories(): void {
+  constructor(private firebase: FirebaseService) {
+    this.categories = this.firebase.getList('/categories');
   }
+
+  // Categories
 
   listCategories(): FirebaseListObservable<Category[]> {
     return this.categories;

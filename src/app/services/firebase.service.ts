@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { Category } from '../models/category.model';
-
 
 @Injectable()
 export class FirebaseService {

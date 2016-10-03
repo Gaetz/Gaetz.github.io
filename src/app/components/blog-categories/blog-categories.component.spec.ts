@@ -2,9 +2,9 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { AppModule } from '../app.module';
+import { AppModule } from '../../app.module';
 import { BlogCategoriesComponent } from './blog-categories.component';
-import { BlogService } from '../services/blog.service';
+import { BlogService } from '../../services/blog.service';
 
 describe('Component: BlogCategories', () => {
 
@@ -53,7 +53,7 @@ describe('Component: BlogCategories', () => {
 
       },
       // Error
-      c => console.log("Done testing service")
+      c => console.log('Done testing service')
     );
 
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 
 @Component({
@@ -9,11 +8,8 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class AppComponent {
 
-  items: FirebaseListObservable<any[]>;
   title = 'Gaëtan Blaise-Cazalet';
 
-  constructor(af: AngularFire) {
-    this.items = af.database.list('items');
-  }
+  constructor() {}
 
 }

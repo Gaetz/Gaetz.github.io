@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { BlogCategoriesComponent } from './blog-categories/blog-categories.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { BlogCategoriesComponent } from './components/blog-categories/blog-categories.component';
 
 import { BlogService } from './services/blog.service';
 import { FirebaseService } from './services/firebase.service';

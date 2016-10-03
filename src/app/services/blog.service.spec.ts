@@ -15,8 +15,8 @@ describe('Service: Blog', () => {
 
   beforeEach(inject([BlogService], (s: BlogService) => service = s));
 
-  it('should ...', inject([BlogService], (service: BlogService) => {
-    expect(service).toBeTruthy();
+  it('should ...', inject([BlogService], (serviceInject: BlogService) => {
+    expect(serviceInject).toBeTruthy();
   }));
 
   it('should list categories', () => {
@@ -26,7 +26,7 @@ describe('Service: Blog', () => {
         expect(c.length).toBe(3, 'The service should return three categories for the `listCategories()` method');
       },
       // Error
-      c => console.log("Done testing service")
+      c => console.log('Done testing service')
     );
   });
 
