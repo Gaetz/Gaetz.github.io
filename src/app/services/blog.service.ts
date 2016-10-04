@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { FirebaseListObservable } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import 'rxjs/add/observable/of';
 
@@ -11,8 +10,8 @@ export class BlogService  {
 
   categories: FirebaseListObservable<Category[]>;
 
-  constructor(private firebase: FirebaseService) {
-    this.categories = this.firebase.getList('/categories');
+  constructor(private af: AngularFire) {
+    this.categories = this.af.database.list('/categories');
   }
 
   // Categories

@@ -9,7 +9,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { BlogCategoriesComponent } from './components/blog-categories/blog-categories.component';
 
 import { BlogService } from './services/blog.service';
-import { FirebaseService } from './services/firebase.service';
 
 // Must export the config
 export const firebaseConfig = {
@@ -21,7 +20,9 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent, MenuComponent, BlogCategoriesComponent
+    AppComponent,
+    MenuComponent,
+    BlogCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,7 @@ export const firebaseConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [ BlogService, FirebaseService ],
+  providers: [ BlogService ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule { }
