@@ -14,15 +14,14 @@ export class BlogCategoriesComponent implements OnInit {
   categories: FirebaseListObservable<Category[]>;
 
   constructor(private blogService: BlogService) {
-    this.categories = this.blogService.listCategories();
   }
 
   ngOnInit() {
-
+    this.categories = this.blogService.listCategories();
   }
 
   addCategory(name: string) {
-    this.blogService.addCategory(new Category(name));
+    this.blogService.addCategory(new Category(5, name));
   }
 
   removeCategory(key: string) {
