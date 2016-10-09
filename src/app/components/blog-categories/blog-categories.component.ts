@@ -19,13 +19,4 @@ export class BlogCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categories = this.blogService.listCategories();
   }
-
-  addCategory(name: string) {
-    this.blogService.addCategory(new Category(5, name));
-  }
-
-  removeCategory(key: string) {
-    this.blogService.removeCategory(key);
-  }
-
 }
