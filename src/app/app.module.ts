@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { BlogCategoriesComponent } from './components/blog-categories/blog-categories.component';
 import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
+import { BlogPostDetailsComponent } from './components/blog-post-details/blog-post-details.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 import { OrderBy } from './shared/orderByPipe'

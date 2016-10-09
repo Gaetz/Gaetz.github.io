@@ -19,4 +19,8 @@ export class BlogCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categories = this.blogService.listCategories();
   }
+
+  selectCategory(categoryId:number) {
+    
+  }
 }
