@@ -14,6 +14,9 @@ import { OrderBy } from './shared/orderByPipe'
 
 import { BlogService } from './services/blog.service';
 
+import { routing } from './app.routing';
+
+
 // Must export the config
 export const firebaseConfig = {
   apiKey: 'AIzaSyAToR2S-730tUKOYRQq75cLSYPBO5qBjfQ',
@@ -29,14 +32,15 @@ export const firebaseConfig = {
     BlogCategoriesComponent,
     BlogPostsComponent,
     AdminComponent,
-    OrderBy
+    OrderBy,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    routing    
   ],
   providers: [ BlogService ],
   bootstrap: [ AppComponent ],
