@@ -2,6 +2,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
+import { BlogPostDetailsComponent } from './components/blog-post-details/blog-post-details.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes: Routes = [
@@ -17,6 +18,10 @@ const appRoutes: Routes = [
     {
         path: 'admin',
         component: AdminComponent
+    },
+    {
+        path: 'post/:id',
+        component: BlogPostDetailsComponent
     },
 ];
 

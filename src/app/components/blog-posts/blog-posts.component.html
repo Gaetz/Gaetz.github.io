@@ -1,10 +1,14 @@
 <div *ngFor="let post of posts | async | orderBy : ['-date']" class="panel panel-default">
+
     <div class="panel-heading"> 
       <span>{{post.category.name}}</span>
-      <h2><a href="#">{{post.title}}</a></h2>
+      <h2><a (click)="goToDetails(post.$key)">{{post.title}}</a></h2>
       <span>par {{post.author}}</span> le <span>{{post.date | date:"dd/MM/yyyy hh:mm"}}</span> 
     </div>
+
     <div class="panel-body">
-      {{post.resume}} <a href="#" >Lire la suite</a>
+      <p>{{post.resume}}</p>
+      <p><a (click)="goToDetails(post.$key)" class="btn btn-primary" role="button">Lire la suite</a></p>
     </div>
+
 </div>

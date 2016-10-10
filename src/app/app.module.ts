@@ -32,6 +32,7 @@ export const firebaseConfig = {
     MenuComponent,
     BlogCategoriesComponent,
     BlogPostsComponent,
+    BlogPostDetailsComponent,
     AdminComponent,
     OrderBy,
   ],

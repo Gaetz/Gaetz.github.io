@@ -51,6 +51,10 @@ export class BlogService  {
     return this.blogPosts;
   }
 
+  getPost(key: string) {
+    return this.af.database.object('/blogPosts/'+key);
+  }
+
   addPost(post: Post) {
     console.log(post);
     this.blogPosts.push(post);
