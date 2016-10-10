@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gb-menu',
@@ -9,7 +10,7 @@ export class MenuComponent implements OnInit {
 
   navbarCollapsed: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.navbarCollapsed = true;
   }
 
@@ -18,6 +19,14 @@ export class MenuComponent implements OnInit {
 
   toggleNavbar(): void {
     this.navbarCollapsed = !this.navbarCollapsed;
+  }
+
+  backToIndex() {
+    this.router.navigate(['/']);
+  }
+
+  goToAdmin() {
+    this.router.navigate(['/admin']);
   }
 
 }

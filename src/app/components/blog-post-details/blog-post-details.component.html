@@ -11,6 +11,11 @@
 
   <div>
     {{(post | async)?.content}}
+    <p class="text-right">
+      <a (click)="goBack()" class="btn btn-primary" role="button">Retour</a>
+    </p>
   </div>
+
+
 
 </div>
