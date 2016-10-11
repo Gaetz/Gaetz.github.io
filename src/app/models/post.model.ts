@@ -6,7 +6,8 @@ export class Post {
     resume: string;
     content: string;
     author: string;
-    category: Category;
+    categoryId: number;
+    categoryName: string;
     date: number;
  
     $key;
@@ -16,7 +17,8 @@ export class Post {
         this.resume = resume;
         this.content = content;
         this.author = author;
-        this.category = new Category(categoryId, categoryName);
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
         this.date = date ? date : new Date().getTime();
     }
 }

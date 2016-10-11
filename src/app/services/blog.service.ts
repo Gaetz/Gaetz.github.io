@@ -32,7 +32,7 @@ export class BlogService  {
     let usedKeys: Array<string> = [];
     // Browse blog posts and change nested category if it fits the argument
     this.blogPosts.subscribe( posts => {
-      posts.filter(post => post.category.id === category.id).map( post => {
+      posts.filter(post => post.categoryId === category.id).map( post => {
         let key = post.$key; // This $key is not found by compiler, though it works
         if(usedKeys.indexOf(key) === -1) {
           this.updatePost(key, new Post(post.title, post.resume, post.content, post.author, category.id, category.name, post.date));
@@ -47,8 +47,17 @@ export class BlogService  {
   }
 
   // Posts
-  listPosts(): FirebaseListObservable<Post[]> {
-    return this.blogPosts;
+  listPosts(categoryId?: number): FirebaseListObservable<Post[]> {
+    if(categoryId) {
+      return this.af.database.list('/blogPosts', {
+        query: {
+          orderByChild: 'categoryId',
+          equalTo: categoryId
+        }
+      });
+    } else {
+      return this.blogPosts;
+    }
   }
 
   getPost(key: string) {
@@ -56,7 +65,6 @@ export class BlogService  {
   }
 
   addPost(post: Post) {
-    console.log(post);
     this.blogPosts.push(post);
   }
 

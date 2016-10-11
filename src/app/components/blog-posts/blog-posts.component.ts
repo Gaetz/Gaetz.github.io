@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
 import { FirebaseListObservable } from 'angularfire2';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Post } from '../../models/post.model';
 import { Category } from '../../models/category.model';
+import { BlogService } from '../../services/blog.service';
 
 import { OrderBy } from '../../shared/orderByPipe';
 
@@ -17,15 +17,26 @@ export class BlogPostsComponent implements OnInit {
 
   posts: FirebaseListObservable<Post[]>;
 
-  constructor(private blogService: BlogService, private router: Router) {
-  }
+  constructor(
+    private blogService: BlogService, 
+    private router: Router,
+    private route: ActivatedRoute,
+    ) {}
 
   ngOnInit() {
-    this.posts = this.blogService.listPosts();
+    // Manage category swap
+    this.route.params.subscribe( data => {
+      let categoryId:number = +data['id'];
+      if(categoryId) {
+        this.posts = this.blogService.listPosts(categoryId);
+      } else {
+        this.posts = this.blogService.listPosts();
+      }
+    });
   }
 
   goToDetails(key: string) {
-      this.router.navigate(['/post', key]);
+      this.router.navigate(['/blog/post', key]);
   }
 
 }

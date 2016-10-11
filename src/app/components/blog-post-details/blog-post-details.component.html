@@ -2,7 +2,7 @@
 
   <div class="page-header">
     <h1>{{(post | async)?.title}} <small>par {{(post | async)?.author}}</small></h1>
-    <span>{{(post | async)?.category.name}} | Le {{(post | async)?.date | date:"dd/MM/yyyy à hh:mm"}}</span> 
+    <span>{{(post | async)?.categoryName}} | Le {{(post | async)?.date | date:"dd/MM/yyyy à hh:mm"}}</span> 
   </div>
 
   <div class="well">

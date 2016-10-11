@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Category } from '../../models/category.model';
 import { BlogService } from '../../services/blog.service';
 import { FirebaseListObservable } from 'angularfire2';
-
 
 @Component({
   selector: 'gb-blog-categories',
@@ -13,7 +14,7 @@ export class BlogCategoriesComponent implements OnInit {
 
   categories: FirebaseListObservable<Category[]>;
 
-  constructor(private blogService: BlogService) {
+  constructor(private blogService: BlogService, private router: Router) {
   }
 
   ngOnInit() {
@@ -21,6 +22,6 @@ export class BlogCategoriesComponent implements OnInit {
   }
 
   selectCategory(categoryId:number) {
-    
+    this.router.navigate(['/blog/category', categoryId]);
   }
 }

@@ -16,11 +16,15 @@ const appRoutes: Routes = [
         component: BlogPostsComponent
     },
     {
+        path: 'blog/category/:id',
+        component: BlogPostsComponent
+    },
+    {
         path: 'admin',
         component: AdminComponent
     },
     {
-        path: 'post/:id',
+        path: 'blog/post/:id',
         component: BlogPostDetailsComponent
     },
 ];

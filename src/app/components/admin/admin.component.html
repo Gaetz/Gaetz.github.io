@@ -30,7 +30,7 @@
   </tr>
   <tr *ngFor="let post of posts | async | orderBy : ['-date']">
         <td><a href="#">{{post.title}}</a></td>
-        <td>{{post.category.name}}</td>
+        <td>{{post.categoryName}}</td>
         <td>{{post.date | date:"dd/MM/yyyy hh:mm"}}</td>
         <td><button class="btn" (click)="removePost(post.$key)">Supprimer</button></td>
   </tr>
