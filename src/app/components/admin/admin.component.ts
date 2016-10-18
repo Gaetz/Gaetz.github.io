@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Category } from '../../models/category.model';
 import { Post } from '../../models/post.model';
@@ -25,8 +26,11 @@ export class AdminComponent implements OnInit {
   categoryCtrl: FormControl;
   postForm: FormGroup;
 
-  constructor(private blogService: BlogService, private fb: FormBuilder) { 
-  }
+  constructor(
+    private blogService: BlogService, 
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     // Get data
@@ -119,6 +123,10 @@ export class AdminComponent implements OnInit {
   }
 
   // Posts
+  goToDetails(key: string) {
+      this.router.navigate(['/blog/post', key]);
+  }
+
   addPost(post: Post) {
     this.blogService.addPost(post);
   }
