@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   postForm: FormGroup;
 
   constructor(
-    private blogService: BlogService, 
+    private blogService: BlogService,
     private fb: FormBuilder,
     private router: Router
   ) {}
@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
     this.resumeCtrl = this.fb.control('', Validators.required);
     this.contentCtrl = this.fb.control('', Validators.required);
     this.authorCtrl = this.fb.control('Gaëtan Blaise-Cazalet', Validators.required);
-    this.categoryCtrl = this.fb.control("1", Validators.required);
+    this.categoryCtrl = this.fb.control('1', Validators.required);
     this.postForm = this.fb.group({
       title: this.titleCtrl,
       resume: this.resumeCtrl,
@@ -50,21 +50,20 @@ export class AdminComponent implements OnInit {
       category: this.categoryCtrl
     });
     // Save categories
-    this.UpdateStaticCategories()
+    this.UpdateStaticCategories();
   }
 
   // Create a static list of categories to avoid some database requests
-  UpdateStaticCategories()
-  {
+  UpdateStaticCategories() {
     this.staticCategories = [];
     let usedKeys: Array<number> = [];
     this.categories.subscribe( categories => {
       categories.map( category => {
-        if(usedKeys.indexOf(category.id) === -1) {
+        if (usedKeys.indexOf(category.id) === -1) {
           this.staticCategories.push(category);
           usedKeys.push(category.id);
         }
-      })
+      });
     });
   }
 
@@ -74,15 +73,15 @@ export class AdminComponent implements OnInit {
     this.resumeCtrl.setValue('');
     this.contentCtrl.setValue('');
     this.authorCtrl.setValue('Gaëtan Blaise-Cazalet');
-    this.categoryCtrl.setValue("1");
+    this.categoryCtrl.setValue('1');
   }
 
   submitPost(postValue, isValid: boolean) {
-    if(isValid) {
+    if (isValid) {
       this.addPost(
-        new Post(postValue.title, postValue.resume, 
-        postValue.content, postValue.author, 
-        parseInt(postValue.category), this.getCategoryNameFromId(parseInt(postValue.category))
+        new Post(postValue.title, postValue.resume,
+        postValue.content, postValue.author,
+        parseInt(postValue.category, 10), this.getCategoryNameFromId(parseInt(postValue.category, 10))
       ));
       this.resetPost();
     }
@@ -96,11 +95,11 @@ export class AdminComponent implements OnInit {
   // Get max id from Categories
   getMaxIdCategories(): number {
     let max = 0;
-    this.staticCategories.forEach( category => { 
-      if(category.id > max) {
+    this.staticCategories.forEach( category => {
+      if (category.id > max) {
         max = category.id;
       }
-    })
+    });
     return max;
   }
 
@@ -112,7 +111,7 @@ export class AdminComponent implements OnInit {
     this.staticCategories.push(c);
   }
 
-  editCategory(key:string, id: number, name: string) {
+  editCategory(key: string, id: number, name: string) {
     this.blogService.updateCategory(key, new Category(id, name));
     this.UpdateStaticCategories();
   }

@@ -1,5 +1,3 @@
-import { Category } from './category.model';
-
 export class Post {
     id: number;
     title: string;
@@ -9,8 +7,8 @@ export class Post {
     categoryId: number;
     categoryName: string;
     date: number;
- 
-    $key;
+
+    $key; // Exposes firebase key
 
     constructor(title: string, resume: string, content: string, author: string, categoryId: number, categoryName: string, date?: number) {
         this.title = title;

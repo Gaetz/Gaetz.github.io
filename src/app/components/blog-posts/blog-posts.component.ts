@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Post } from '../../models/post.model';
-import { Category } from '../../models/category.model';
 import { BlogService } from '../../services/blog.service';
-
-import { OrderBy } from '../../shared/orderByPipe';
 
 @Component({
   selector: 'gb-blog-posts',
@@ -18,7 +15,7 @@ export class BlogPostsComponent implements OnInit {
   posts: FirebaseListObservable<Post[]>;
 
   constructor(
-    private blogService: BlogService, 
+    private blogService: BlogService,
     private router: Router,
     private route: ActivatedRoute,
     ) {}
@@ -26,8 +23,8 @@ export class BlogPostsComponent implements OnInit {
   ngOnInit() {
     // Manage category swap
     this.route.params.subscribe( data => {
-      let categoryId:number = +data['id'];
-      if(categoryId) {
+      let categoryId: number = +data['id'];
+      if (categoryId) {
         this.posts = this.blogService.listPosts(categoryId);
       } else {
         this.posts = this.blogService.listPosts();

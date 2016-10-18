@@ -11,7 +11,7 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
 import { BlogPostDetailsComponent } from './components/blog-post-details/blog-post-details.component';
 import { AdminComponent } from './components/admin/admin.component';
 
-import { OrderBy } from './shared/orderByPipe'
+import { OrderBy } from './shared/orderByPipe';
 
 import { BlogService } from './services/blog.service';
 
@@ -42,7 +42,7 @@ export const firebaseConfig = {
     HttpModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    routing    
+    routing
   ],
   providers: [ BlogService ],
   bootstrap: [ AppComponent ],

@@ -21,7 +21,7 @@ export class BlogCategoriesComponent implements OnInit {
     this.categories = this.blogService.listCategories();
   }
 
-  selectCategory(categoryId:number) {
+  selectCategory(categoryId: number) {
     this.router.navigate(['/blog/category', categoryId]);
   }
 }

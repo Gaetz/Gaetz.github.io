@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { BlogService } from '../../services/blog.service';
 import { FirebaseObjectObservable } from 'angularfire2';
@@ -24,7 +24,7 @@ export class BlogPostDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.forEach(
       (params: Params) => {
-        let id:string = params['id'];
+        let id: string = params['id'];
         this.post = this.blogService.getPost(id);
       }
     );
