@@ -3,6 +3,7 @@ import { BlogService } from '../../services/blog.service';
 import { FirebaseListObservable } from 'angularfire2';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularFire } from 'angularfire2';
 
 import { Category } from '../../models/category.model';
 import { Post } from '../../models/post.model';
@@ -38,7 +39,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private blogService: BlogService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public af: AngularFire
   ) {}
 
   ngOnInit() {

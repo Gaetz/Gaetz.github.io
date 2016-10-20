@@ -1,65 +1,74 @@
-<h1>Admin</h1>
+<!-- Available if connected -->
+<div *ngIf="(af.auth | async)">
 
-<h3>Categories</h3>
+  <h1>Admin</h1>
 
-<!-- List, edit and delete categories -->
-<div *ngFor="let category of categories | async">
+  <h3>Categories</h3>
+
+  <!-- List, edit and delete categories -->
+  <div *ngFor="let category of categories | async">
+    <div class="input-group">
+      <input [(ngModel)]="category.name" #categoryName placeholder="name" class="form-control" (blur)="editCategory(category.$key, category.id, categoryName.value)">
+      <span class="input-group-btn"><button (click)="removeCategory(category.$key)" class="btn">Supprimer</button></span>
+    </div>
+  </div>
+
+  <!-- Add a category -->
   <div class="input-group">
-    <input [(ngModel)]="category.name" #categoryName placeholder="name" class="form-control" (blur)="editCategory(category.$key, category.id, categoryName.value)">
-    <span class="input-group-btn"><button (click)="removeCategory(category.$key)" class="btn">Supprimer</button></span>
+    <input type="text" #newCategory class="form-control" placeholder="Nom de la catégorie">
+    <span class="input-group-btn">
+      <button (click)="addCategory(newCategory.value)" class="btn btn-default" type="button">Ajouter</button>
+    </span>
   </div>
+
+
+  <h3>Posts</h3>
+
+  <table class='table'>
+    <tr>
+      <th>Post</th>
+      <th>Catégorie</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let post of posts | async | orderBy : ['-date']">
+          <td><a (click)="goToDetails(post.$key)">{{post.title}}</a></td>
+          <td>{{post.categoryName}}</td>
+          <td>{{post.date | date:"dd/MM/yyyy hh:mm"}}</td>
+          <td>
+            <button class="btn" (click)="editPost(post)">Editer</button>
+            <button class="btn" (click)="removePost(post.$key)">Supprimer</button>
+          </td>
+    </tr>
+  </table>
+
+  <form [formGroup]="postForm" (ngSubmit)="submitPost(postForm.value, postForm.valid)">
+    <div>
+      <label>Title</label><input formControlName="title" class="form-control">
+    </div>
+    <div>
+      <label>Resume</label><textarea formControlName="resume" class="form-control" row="4"></textarea>
+    </div>
+    <div>
+      <label>Content</label><textarea formControlName="content" class="form-control" row="8"></textarea>
+    </div>
+    <div>
+      <label>Author</label><input formControlName="author" class="form-control">
+    </div>
+    <div>
+      <label>Category</label>
+      <select formControlName="category">
+        <option *ngFor="let category of categories | async" [value]=category.id>{{category.name}}</option>
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="btn">{{submitLabel}}</button>
+      <button type="reset" (click)="resetPost()" class="btn">Reset</button>
+    </div>
+  </form>
 </div>
 
-<!-- Add a category -->
-<div class="input-group">
-  <input type="text" #newCategory class="form-control" placeholder="Nom de la catégorie">
-  <span class="input-group-btn">
-    <button (click)="addCategory(newCategory.value)" class="btn btn-default" type="button">Ajouter</button>
-  </span>
+<!-- If not connected -->
+<div *ngIf="!(af.auth | async)">
+  Merci de vous connecter pour utiliser l'écran Administrateur.
 </div>
-
-
-<h3>Posts</h3>
-
-<table class='table'>
-  <tr>
-    <th>Post</th>
-    <th>Catégorie</th>
-    <th>Date</th>
-    <th>Action</th>
-  </tr>
-  <tr *ngFor="let post of posts | async | orderBy : ['-date']">
-        <td><a (click)="goToDetails(post.$key)">{{post.title}}</a></td>
-        <td>{{post.categoryName}}</td>
-        <td>{{post.date | date:"dd/MM/yyyy hh:mm"}}</td>
-        <td>
-          <button class="btn" (click)="editPost(post)">Editer</button>
-          <button class="btn" (click)="removePost(post.$key)">Supprimer</button>
-        </td>
-  </tr>
-</table>
-
-<form [formGroup]="postForm" (ngSubmit)="submitPost(postForm.value, postForm.valid)">
-  <div>
-    <label>Title</label><input formControlName="title" class="form-control">
-  </div>
-  <div>
-    <label>Resume</label><textarea formControlName="resume" class="form-control" row="4"></textarea>
-  </div>
-  <div>
-    <label>Content</label><textarea formControlName="content" class="form-control" row="8"></textarea>
-  </div>
-  <div>
-    <label>Author</label><input formControlName="author" class="form-control">
-  </div>
-  <div>
-    <label>Category</label>
-    <select formControlName="category">
-      <option *ngFor="let category of categories | async" [value]=category.id>{{category.name}}</option>
-    </select>
-  </div>
-  <div>
-    <button type="submit" class="btn">{{submitLabel}}</button>
-    <button type="reset" (click)="resetPost()" class="btn">Reset</button>
-  </div>
-</form>
