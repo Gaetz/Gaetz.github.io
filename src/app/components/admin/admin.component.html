@@ -32,7 +32,10 @@
         <td><a (click)="goToDetails(post.$key)">{{post.title}}</a></td>
         <td>{{post.categoryName}}</td>
         <td>{{post.date | date:"dd/MM/yyyy hh:mm"}}</td>
-        <td><button class="btn" (click)="removePost(post.$key)">Supprimer</button></td>
+        <td>
+          <button class="btn" (click)="editPost(post)">Editer</button>
+          <button class="btn" (click)="removePost(post.$key)">Supprimer</button>
+        </td>
   </tr>
 </table>
 
@@ -56,7 +59,7 @@
     </select>
   </div>
   <div>
-    <button type="submit" class="btn">Ajouter</button>
+    <button type="submit" class="btn">{{submitLabel}}</button>
     <button type="reset" (click)="resetPost()" class="btn">Reset</button>
   </div>
 </form>
