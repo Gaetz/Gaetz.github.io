@@ -10,7 +10,7 @@
   </div>
 
   <div>
-    {{(post | async)?.content}}
+    <div [innerHTML]="(post | async)?.content"></div>
     <p class="text-right">
       <a (click)="goBack()" class="btn btn-primary" role="button">Retour</a>
     </p>
