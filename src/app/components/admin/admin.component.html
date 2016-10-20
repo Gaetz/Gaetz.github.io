@@ -8,7 +8,7 @@
   <!-- List, edit and delete categories -->
   <div *ngFor="let category of categories | async">
     <div class="input-group">
-      <input [(ngModel)]="category.name" #categoryName placeholder="name" class="form-control" (blur)="editCategory(category.$key, category.id, categoryName.value)">
+      <input [(ngModel)]="category.name" #categoryName placeholder="name" class="form-control" (blur)="updateCategory(category.$key, category.id, categoryName.value)">
       <span class="input-group-btn"><button (click)="removeCategory(category.$key)" class="btn">Supprimer</button></span>
     </div>
   </div>
