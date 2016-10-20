@@ -30,8 +30,8 @@ export class MenuComponent implements OnInit {
   auth(email: string, password: string) {
     this.af.auth.login({ email: email, password: password }).catch( _ => {
       // Display a message error for a little time
-      this.error = "Erreur de login";
-      setTimeout( _ =>  this.error = null, 1000 );
+      this.error = 'Erreur de login';
+      setTimeout( () =>  this.error = null, 1000 );
     });
   }
 

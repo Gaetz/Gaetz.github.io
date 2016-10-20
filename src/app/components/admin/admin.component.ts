@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit {
 
   // Selected post when editing
   selectedPost: Post = null;
-  submitLabel: String = "Ajouter";
+  submitLabel: String = 'Ajouter';
 
   // Keep track of categories
   private staticCategories: Array<Category> = [];
@@ -86,7 +86,7 @@ export class AdminComponent implements OnInit {
   resetPost() {
     // Reset post selection
     this.selectedPost = null;
-    this.submitLabel = "Ajouter";
+    this.submitLabel = 'Ajouter';
     // Reset form
     this.titleCtrl.setValue('');
     this.resumeCtrl.setValue('');
@@ -101,7 +101,7 @@ export class AdminComponent implements OnInit {
   submitPost(postValue, isValid: boolean) {
     if (isValid) {
       // Add post if not editing post
-      if(this.selectedPost == null) {
+      if (this.selectedPost == null) {
         this.addPost(
           new Post(postValue.title, postValue.resume,
           postValue.content, postValue.author,
@@ -110,12 +110,12 @@ export class AdminComponent implements OnInit {
       // If editing post, update post
       } else {
         this.updatePost(
-          postValue.key, 
+          postValue.key,
           new Post(postValue.title, postValue.resume,
             postValue.content, postValue.author,
             parseInt(postValue.category, 10), this.getCategoryNameFromId(parseInt(postValue.category, 10)),
-            parseInt(postValue.date))
-        )
+            parseInt(postValue.date, 10))
+        );
       }
       this.resetPost();
     }
@@ -150,7 +150,7 @@ export class AdminComponent implements OnInit {
 
   // Set post to be edited
   editPost(post: Post) {
-    this.submitLabel = "Editer";
+    this.submitLabel = 'Editer';
     this.selectedPost = post;
     this.putPostInForm(post);
   }

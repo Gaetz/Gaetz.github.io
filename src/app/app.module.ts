@@ -30,7 +30,7 @@ export const firebaseConfig = {
 export const firebaseAuthConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password
-}
+};
 
 @NgModule({
   declarations: [
