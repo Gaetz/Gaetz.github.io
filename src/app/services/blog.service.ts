@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
-
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Category } from '../models/category.model';
 import { Post } from '../models/post.model';
 
@@ -10,9 +9,9 @@ export class BlogService  {
   categories: FirebaseListObservable<Category[]>;
   blogPosts: FirebaseListObservable<Post[]>;
 
-  constructor(private af: AngularFire) {
-    this.categories = this.af.database.list('/categories');
-    this.blogPosts = this.af.database.list('/blogPosts');
+  constructor(private db: AngularFireDatabase) {
+    this.categories = db.list('/categories');
+    this.blogPosts = db.list('/blogPosts');
   }
 
   // Categories
@@ -27,11 +26,11 @@ export class BlogService  {
   updateCategory(categoryKey, category: Category) {
     this.categories.update(categoryKey, category);
     // Key list to avoid multiple updates
-    let usedKeys: Array<string> = [];
+    const usedKeys: Array<string> = [];
     // Browse blog posts and change nested category if it fits the argument
     this.blogPosts.subscribe( posts => {
       posts.filter(post => post.categoryId === category.id).map( post => {
-        let key = post.$key; // This $key is not found by compiler, though it works
+        const key = post.$key; // This $key is not found by compiler, though it works
         if (usedKeys.indexOf(key) === -1) {
           this.updatePost(key, new Post(post.title, post.resume, post.content, post.author, category.id, category.name, post.date));
           usedKeys.push(key);
@@ -47,7 +46,7 @@ export class BlogService  {
   // Posts
   listPosts(categoryId?: number): FirebaseListObservable<Post[]> {
     if (categoryId) {
-      return this.af.database.list('/blogPosts', {
+      return this.db.list('/blogPosts', {
         query: {
           orderByChild: 'categoryId',
           equalTo: categoryId
@@ -59,7 +58,7 @@ export class BlogService  {
   }
 
   getPost(key: string) {
-    return this.af.database.object('/blogPosts/' + key);
+    return this.db.object('/blogPosts/' + key);
   }
 
   addPost(post: Post) {

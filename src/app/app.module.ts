@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -18,20 +22,6 @@ import { BlogService } from './services/blog.service';
 import { routing } from './app.routing';
 
 
-// Must export the config
-export const firebaseConfig = {
-  apiKey: 'AIzaSyAToR2S-730tUKOYRQq75cLSYPBO5qBjfQ',
-  authDomain: 'gaetz-github-io.firebaseapp.com',
-  databaseURL: 'https://gaetz-github-io.firebaseio.com',
-  storageBucket: 'gs://gaetz-github-io.appspot.com'
-};
-
-
-export const firebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,17 +30,19 @@ export const firebaseAuthConfig = {
     BlogPostsComponent,
     BlogPostDetailsComponent,
     AdminComponent,
-    OrderBy,
+    OrderBy
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     routing
   ],
-  providers: [ BlogService ],
-  bootstrap: [ AppComponent ],
+  providers: [BlogService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

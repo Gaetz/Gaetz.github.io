@@ -15,7 +15,7 @@
       <!-- Blog content -->
       <gb-blog-categories></gb-blog-categories>
       <!-- Not connected : login -->
-      <ul *ngIf="!(af.auth | async)" class="nav navbar-nav navbar-right">
+      <ul *ngIf="!afAuth.auth.currentUser" class="nav navbar-nav navbar-right">
         <li *ngIf="error" class="alert alert-danger dontHitTop" role="alert">{{error}}</li>
         <li><input type="text" #email class="form-control dontHitTop" placeholder="Email"></li>
         <li><input type="password" #password class="form-control dontHitTop" placeholder="Mot de passe"></li>
@@ -24,7 +24,7 @@
         </li>
       </ul>
       <!-- Connected : admin and logout -->
-      <ul *ngIf="(af.auth | async)" class="nav navbar-nav navbar-right">
+      <ul *ngIf="afAuth.auth.currentUser" class="nav navbar-nav navbar-right">
         <li><a (click)="goToAdmin()">Admin</a></li>
         <li><a (click)="logout()">Logout</a></li>
       </ul>

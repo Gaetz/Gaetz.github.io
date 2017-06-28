@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-
+/*
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AppModule } from '../../app.module';
 import { MenuComponent } from './menu.component';
@@ -92,3 +92,4 @@ describe('Component: Menu', () => {
   });
 
 });
+*/

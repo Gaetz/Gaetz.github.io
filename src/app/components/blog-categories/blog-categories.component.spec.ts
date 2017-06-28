@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-
+/*
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { AppModule } from '../../app.module';
@@ -50,7 +50,7 @@ describe('Component: BlogCategories', () => {
     let component = new BlogCategoriesComponent(blogService);
     expect(component).toBeTruthy();
   });
-
+*/
 /*
   it('should display every category name in a list', () => {
 
@@ -87,5 +87,6 @@ describe('Component: BlogCategories', () => {
 
   });
 */
-
+/*
 });
+*/

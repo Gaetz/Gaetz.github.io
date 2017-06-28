@@ -1,14 +1,14 @@
-import { GblogPage } from './app.po';
+import { Gaetz.Github.IoPage } from './app.po';
 
-describe('gblog App', function() {
-  let page: GblogPage;
+describe('gaetz.github.io App', () => {
+  let page: Gaetz.Github.IoPage;
 
   beforeEach(() => {
-    page = new GblogPage();
+    page = new Gaetz.Github.IoPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Gaëtan Blaise-Cazalet');
+    expect(page.getParagraphText()).toEqual('Welcome to app!!');
   });
 });

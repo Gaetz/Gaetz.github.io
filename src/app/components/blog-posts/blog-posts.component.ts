@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable } from 'angularfire2/database';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Post } from '../../models/post.model';
@@ -23,7 +23,7 @@ export class BlogPostsComponent implements OnInit {
   ngOnInit() {
     // Manage category swap
     this.route.params.subscribe( data => {
-      let categoryId: number = +data['id'];
+      const categoryId: number = +data['id'];
       if (categoryId) {
         this.posts = this.blogService.listPosts(categoryId);
       } else {

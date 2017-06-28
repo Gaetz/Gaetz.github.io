@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFire } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'gb-menu',
@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
   navbarCollapsed: boolean;
   error: String = null;
 
-  constructor(private router: Router, public af: AngularFire) {
+  constructor(private router: Router, public afAuth: AngularFireAuth ) {
     this.navbarCollapsed = true;
   }
 
@@ -28,15 +28,15 @@ export class MenuComponent implements OnInit {
   }
 
   auth(email: string, password: string) {
-    this.af.auth.login({ email: email, password: password }).catch( _ => {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).catch( _ => {
       // Display a message error for a little time
       this.error = 'Erreur de login';
-      setTimeout( () =>  this.error = null, 1000 );
+      setTimeout( () => this.error = null, 1000 );
     });
   }
 
   logout() {
-    this.af.auth.logout();
+    this.afAuth.auth.signOut();
   }
 
   goToAdmin() {

@@ -1,5 +1,5 @@
 <!-- Available if connected -->
-<div *ngIf="(af.auth | async)">
+<div *ngIf="afAuth.auth.currentUser">
 
   <h1>Admin</h1>
 
@@ -69,6 +69,6 @@
 </div>
 
 <!-- If not connected -->
-<div *ngIf="!(af.auth | async)">
+<div *ngIf="!afAuth.auth.currentUser">
   Merci de vous connecter pour utiliser l'écran Administrateur.
 </div>

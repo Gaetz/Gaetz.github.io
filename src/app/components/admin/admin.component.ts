@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
-import { FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AngularFire } from 'angularfire2';
 
 import { Category } from '../../models/category.model';
 import { Post } from '../../models/post.model';
@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
     private blogService: BlogService,
     private fb: FormBuilder,
     private router: Router,
-    public af: AngularFire
+    public afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class AdminComponent implements OnInit {
   // Create a static list of categories to avoid some database requests
   UpdateStaticCategories() {
     this.staticCategories = [];
-    let usedKeys: Array<number> = [];
+    const usedKeys: Array<number> = [];
     this.categories.subscribe( categories => {
       categories.map( category => {
         if (usedKeys.indexOf(category.id) === -1) {
@@ -157,8 +157,8 @@ export class AdminComponent implements OnInit {
 
   // Categories services
   addCategory(name: string) {
-    let maxId = this.getMaxIdCategories();
-    let c = new Category(maxId, name);
+    const maxId = this.getMaxIdCategories();
+    const c = new Category(maxId, name);
     this.blogService.addCategory(c);
     this.staticCategories.push(c);
   }

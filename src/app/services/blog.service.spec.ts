@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
+/*
 import { TestBed, async, inject } from '@angular/core/testing';
 import { BlogService } from './blog.service';
 import {
@@ -47,6 +48,8 @@ describe('Service: Blog', () => {
     expect(serviceInject).toBeTruthy();
   }));
 
+*/
+
 /*
   it('should list categories', () => {
     service.listCategories().subscribe(
@@ -59,5 +62,6 @@ describe('Service: Blog', () => {
     );
   });
   */
-
+/*
 });
+*/

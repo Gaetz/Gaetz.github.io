@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Category } from '../../models/category.model';
 import { BlogService } from '../../services/blog.service';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'gb-blog-categories',
