@@ -20,7 +20,7 @@ import { OrderBy } from './shared/orderByPipe';
 import { BlogService } from './services/blog.service';
 
 import { routing } from './app.routing';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { routing } from './app.routing';
     AngularFireAuthModule,
     routing
   ],
-  providers: [BlogService],
+  providers: [BlogService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
